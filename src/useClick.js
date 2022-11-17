@@ -1,4 +1,4 @@
-export const useClick = onClick => {
+const useClick = onClick => {
   const ref = useRef();
   
   useEffect(() => {
@@ -15,5 +15,5 @@ export const useClick = onClick => {
       }
     }
   }, [onClick])
-  return ref.current;
+  return ref;
 }

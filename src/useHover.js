@@ -1,8 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import './App.css';
-
-
-const useHover = onHover => {
+import { useEffect, useRef } from "react";
+export const useHover = onHover => {
   const ref = useRef();
 
   useEffect(() => {
@@ -21,17 +18,3 @@ const useHover = onHover => {
   }, [onHover])
   return ref
 }
-
-
-
-const App = () => {
-  const sayHello = () => console.log('say hello');
-  const title = useHover(sayHello);
-  return (
-    <div className="App">
-      <div ref={title}>hello</div>
-    </div>
-  );
-}
-
-export default App;
