@@ -1,31 +1,17 @@
 import React, { useEffect, useRef, useState, } from 'react';
 import './App.css';
+import useAxios from './useAxios'
 
-const useNotification = (title, options) => {
-  if (!("Notification" in window)) {
-    return;
-  }
-  const fireNotif = () => {
-    if (Notification.permission !== 'granted') {
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-          new Notification(title, options);
-        } else {
-          return;
-        }
-      })
-    } else {
-      new Notification(title, options);
-    }
-  }
-  return fireNotif
-}
+
 
 const App = () => {
-  const triggerNotif = useNotification('알람 레쓰고' , {body: '안녕반가워'});
+  const { loading, data, error, refetch } = useAxios({ url: 'https://yts.mx/api/v2/list_movies.json' });
+  console.log(loading, data, error, refetch);
   return (
     <div className="App" >
-      <button onClick={triggerNotif}>makeFullscreen</button>
+      <h1>{ data && data.status }</h1>
+      <h1>{ loading && "loading"}</h1>
+      <button onClick={refetch}>refetch</button>
     </div>
   );
 }
