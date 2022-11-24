@@ -1,10 +1,12 @@
-export const useConfirm = (message = '', onConfirm, onCancel) => {
-  if (!onConfirm || typeof onConfirm !== "function") {
+export const useConfirm = (message, onConfirm, onCancel) => {
+  if (typeof onConfirm !== 'function') {
     return;
   }
-  if (onCancel && typeof onCancel !== "function") {
+
+  if (typeof onCancel !== 'function') {
     return;
   }
+
   const confirmAction = () => {
     if (window.confirm(message)) {
       onConfirm();
@@ -12,5 +14,7 @@ export const useConfirm = (message = '', onConfirm, onCancel) => {
       onCancel();
     }
   }
+
   return confirmAction;
+
 }
