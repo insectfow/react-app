@@ -1,6 +1,6 @@
 const useClick = onClick => {
+  // 클릭할때 발생하는 메소드
   const ref = useRef();
-  
   useEffect(() => {
     if (typeof onClick !== 'function') {
       return;
